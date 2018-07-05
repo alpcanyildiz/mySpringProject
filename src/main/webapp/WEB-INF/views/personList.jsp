@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@page language="java"  pageEncoding="UTF-8" %>
 <%--
   Created by IntelliJ IDEA.
   User: yildiza
@@ -42,7 +43,7 @@
             <td>${person.age}</td>
                 <td><a href="<spring:url value="/personList/viewPerson?personID=${person.personID}"/>"
                 > View</a>
-                    <a href="<spring:url value="/personList/deletePerson?personID=${person.personID}"/>"
+                    <a href="<spring:url value="/personList/deletePerson?personID=${person.personID}" />"
                     >Delete</a>
                     <a href="<spring:url value="/personList/editPerson?personID=${person.personID}" />"
                     >Edit</a>

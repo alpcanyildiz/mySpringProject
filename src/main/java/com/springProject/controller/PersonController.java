@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
 
@@ -64,10 +65,15 @@ public class PersonController {
 
 
     @RequestMapping("/personList/deletePerson")
-    public String deletePerson(@RequestParam("personID") long id)
+    public String deletePerson(@RequestParam("personID") long id, HttpServletRequest request){
+    String url =  request.getSession().getServletContext().getRealPath("/");
 
-    {System.out.print(id);
-        personService.deleteByID(id);
+    System.out.println(url);
+    System.out.print(id);
+
+        Person person = personService.getPersonByID(id);
+
+        personService.deleteByID(person);
 
         return "redirect:/personList";
     }
@@ -92,7 +98,7 @@ public class PersonController {
         return "editPerson";
     }
 
-    @PostMapping("/editPerson2")
+    @RequestMapping(value="/personList/editPerson",method=RequestMethod.POST)
     public String editPersonPost(@ModelAttribute("editpersonPost") Person person) {
 
 

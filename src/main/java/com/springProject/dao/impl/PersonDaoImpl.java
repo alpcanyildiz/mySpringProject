@@ -10,8 +10,10 @@ import org.hibernate.SessionFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 
 @Repository
@@ -25,7 +27,7 @@ public class PersonDaoImpl implements PersonDao {
     }
 
 
-    @Override
+
     public List<Person> getAllPerson() {
         Session session;
 
@@ -39,11 +41,11 @@ public class PersonDaoImpl implements PersonDao {
         List<Person> personList = query.list();
 
         session.flush();
-        session.close();
+
         return personList;
     }
 
-    @Override
+
     public void savePerson(Person person) {
         Session session;
         try {
@@ -54,10 +56,10 @@ public class PersonDaoImpl implements PersonDao {
 
       session.saveOrUpdate("Person",person);
       System.out.println("SESSION SAVED");
-
+        session.flush();
 
     }
-    @Override
+
     public Person getPersonByID(long id) {
         Session session;
         try {
@@ -66,11 +68,12 @@ public class PersonDaoImpl implements PersonDao {
             session = sessionFactory.openSession();
         }
         Person person =(Person) session.get(Person.class,id);
+        session.flush();
         return person;
 
     }
-    @Override
-    public void deleteByID(long personID) {
+
+    public void deleteByID(Person person) {
         Session session;
         try {
             session = sessionFactory.getCurrentSession();
@@ -78,11 +81,10 @@ public class PersonDaoImpl implements PersonDao {
             session = sessionFactory.openSession();
         }
 
-        Person person = (Person) session.get(Person.class,personID) ;
         session.delete(person);
-
+        session.flush();
     }
-    @Override
+
     public void editPerson(Person person) {
         Session session;
         try {
@@ -93,7 +95,7 @@ public class PersonDaoImpl implements PersonDao {
 
         session.saveOrUpdate(person);
 
-        session.close();
+        session.flush();
     }
 
 

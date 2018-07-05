@@ -12,7 +12,7 @@ public interface PersonDao {
 
     Person getPersonByID(long id);
 
-    void deleteByID(long personID);
+    void deleteByID(Person person);
 
     void editPerson(Person person);
 

@@ -13,33 +13,29 @@ import java.util.List;
 @Service
 @Transactional
 public class PersonServiceImlp implements PersonService {
-
+    @Autowired
     private PersonDao personDao;
 
-    @Autowired
-    public PersonServiceImlp(PersonDao personDao) {
-        this.personDao = personDao;
-    }
 
-    @Override
+
+
     public List<Person> getAllPerson(){
 
        return personDao.getAllPerson();
     }
-    @Override
+
     public void savePerson(Person person) {
         personDao.savePerson(person);
     }
-    @Override
-    public void deleteByID(long personID) {
-        personDao.deleteByID(personID);
+
+    public void deleteByID(Person person) {
+        personDao.deleteByID(person);
 
     }
-    @Override
-    public Person getPersonByID(long id) {
+        public Person getPersonByID(long id) {
         return personDao.getPersonByID(id);
     }
-    @Override
+
     public void editPerson(Person person) {
          personDao.editPerson(person);
     }

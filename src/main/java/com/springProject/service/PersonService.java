@@ -11,7 +11,7 @@ public interface PersonService {
 
     void savePerson(Person person);
 
-    void deleteByID(long personID);
+    void deleteByID(Person person);
 
     Person getPersonByID(long id);
 

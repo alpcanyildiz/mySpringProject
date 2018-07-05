@@ -17,9 +17,9 @@
 <h1>Welcome to the edit page</h1>
 
 
-<form:form action="editPerson2" method="post" modelAttribute="editpersonPost">
+<form:form action="${pageContext.request.contextPath}/personList/editPerson" method="post" modelAttribute="editpersonPost">
 
-    <form:hidden path="personID" />
+    <form:hidden path="personID" id="personID" value="${editpersonPost.personID}" />
 
 <div class="form-group">
     <label for="name">Name</label>
